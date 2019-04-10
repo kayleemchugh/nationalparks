@@ -1,4 +1,4 @@
-package bootcamp.nationalparks.nationalparks;
+package sample.projects.nationalparks;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package bootcamp.nationalparks.nationalparks;
+package sample.projects.nationalparks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
