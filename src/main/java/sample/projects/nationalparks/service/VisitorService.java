@@ -1,5 +1,13 @@
 package sample.projects.nationalparks.service;
 
-public class VisitorService
+
+
+import sample.projects.nationalparks.model.Visitor;
+
+
+public interface VisitorService
 {
+
+   Visitor getVisitorById(Integer id);
+
 }
