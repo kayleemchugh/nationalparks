@@ -1,14 +1,10 @@
 package sample.projects.nationalparks.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.http.HttpEntity;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sample.projects.nationalparks.model.Visitor;
 import sample.projects.nationalparks.service.VisitorService;
 
@@ -25,12 +21,23 @@ public class VisitorController
    }
 
    @GetMapping("/{id}")
-   public HttpEntity<Resource<Visitor>> getVisitor(@PathVariable(value="id") Integer id) {
+   public Visitor getVisitor(@PathVariable(value="id") Integer id) {
       Visitor visitor = visitorService.getVisitorById(id);
       if(visitor == null) {
-         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+         // throw error
+         return null;
       }
-      Resource<Visitor> resource = new Resource<>(visitor);
-      return new ResponseEntity<>(resource, HttpStatus.OK);
+      return visitor;
+   }
+
+   @PostMapping
+   public Visitor saveVisitor(@RequestBody Visitor visitor) {
+      return visitorService.saveVisitor(visitor);
+   }
+
+   @PutMapping
+   public Visitor updateVisitor(@PathVariable(value="id") Integer id,
+                                @RequestBody Visitor visitor) {
+      return visitorService.updateVisitor(id, visitor);
    }
 }

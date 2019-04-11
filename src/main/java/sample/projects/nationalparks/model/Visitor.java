@@ -1,21 +1,28 @@
 package sample.projects.nationalparks.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "visitor", schema = "national_parks")
 public class Visitor
 {
 
    @Id
-   @GeneratedValue(generator="visitor_id", strategy = GenerationType.IDENTITY)
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
+   @Column(name = "visitor_id")
    private Integer id;
+
+   @Column(name = "first_name")
    private String firstName;
+
+   @Column(name = "last_name")
    private String lastName;
+
+   @Column(name = "email_address")
    private String emailAddress;
-   private String zipCode;
+
+   @Column(name = "zip_code")
+   private Integer zipCode;
 
    public Integer getId()
    {
@@ -57,12 +64,12 @@ public class Visitor
       this.emailAddress = emailAddress;
    }
 
-   public String getZipCode()
+   public Integer getZipCode()
    {
       return zipCode;
    }
 
-   public void setZipCode(String zipCode)
+   public void setZipCode(Integer zipCode)
    {
       this.zipCode = zipCode;
    }
