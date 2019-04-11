@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import sample.projects.nationalparks.model.ServiceRequest;
 import sample.projects.nationalparks.repository.ServiceRequestRepository;
 
+import java.util.List;
+
 @Service
 public class ServiceRequestService
 {
@@ -18,6 +20,10 @@ public class ServiceRequestService
 
    public ServiceRequest getServiceRequestById(Integer id) {
       return  serviceRequestRepository.getOne(id);
+   }
+
+   public List<ServiceRequest> getServiceRequestByPark(Integer parkId) {
+      return serviceRequestRepository.getServiceRequestsByParkId(parkId);
    }
 
    public ServiceRequest saveServiceRequest(ServiceRequest serviceRequest)

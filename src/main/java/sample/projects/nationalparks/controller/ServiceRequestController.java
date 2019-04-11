@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import sample.projects.nationalparks.model.ServiceRequest;
 import sample.projects.nationalparks.service.ServiceRequestService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/serviceRequest")
 public class ServiceRequestController
@@ -24,6 +26,15 @@ public class ServiceRequestController
          throw new Error("could not find service request with this id");
       }
       return serviceRequest;
+   }
+
+   @GetMapping("/park/{id}")
+   public List<ServiceRequest> getServiceRequestByPark(@PathVariable(value="id") Integer id) {
+      List<ServiceRequest> serviceRequests = serviceRequestService.getServiceRequestByPark(id);
+      if(serviceRequests == null) {
+         throw new Error("could not find service requests with this park id");
+      }
+      return serviceRequests;
    }
 
    @PostMapping
