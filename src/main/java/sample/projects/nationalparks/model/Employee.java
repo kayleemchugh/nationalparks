@@ -22,7 +22,6 @@ public class Employee
    @Column(name = "email_address")
    private String emailAddress;
 
-   // set up relationship
    @Column(name = "park_id")
    private Integer parkId;
 
