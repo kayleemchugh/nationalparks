@@ -2,8 +2,6 @@ package sample.projects.nationalparks.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.projects.nationalparks.model.Visitor;
 import sample.projects.nationalparks.service.VisitorService;
@@ -12,7 +10,6 @@ import sample.projects.nationalparks.service.VisitorService;
 @RequestMapping("/visitor")
 public class VisitorController
 {
-
    private final VisitorService visitorService;
 
    @Autowired
@@ -24,8 +21,7 @@ public class VisitorController
    public Visitor getVisitor(@PathVariable(value="id") Integer id) {
       Visitor visitor = visitorService.getVisitorById(id);
       if(visitor == null) {
-         // throw error
-         return null;
+         throw new Error("could not find visitor with this id");
       }
       return visitor;
    }
