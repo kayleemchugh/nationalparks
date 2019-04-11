@@ -31,7 +31,7 @@ public class VisitorController
       return visitorService.saveVisitor(visitor);
    }
 
-   @PutMapping
+   @PutMapping("/{id}")
    public Visitor updateVisitor(@PathVariable(value="id") Integer id,
                                 @RequestBody Visitor visitor) {
       return visitorService.updateVisitor(id, visitor);

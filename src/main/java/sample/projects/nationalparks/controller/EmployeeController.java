@@ -38,14 +38,16 @@ public class EmployeeController
       return employeeService.saveEmployee(employee);
    }
 
-   @PutMapping
+   @PutMapping("/{id}")
    public Employee updateEmployee(@PathVariable(value="id") Integer id,
                                 @RequestBody Employee employee) {
       return employeeService.updateEmployee(id, employee);
    }
 
-   @PutMapping("/{id}/deactivate")
-   public Employee deactivateEmployee(@PathVariable Integer id) {
-      return employeeService.deactivateEmployee(id);
+
+   @PutMapping("/{id}/activate")
+   public Employee setEmployeeIsActive(@PathVariable Integer id,
+                                       @RequestParam (name = "isActive") Boolean isActive) {
+      return employeeService.setEmployeeIsActive(id, isActive);
    }
 }

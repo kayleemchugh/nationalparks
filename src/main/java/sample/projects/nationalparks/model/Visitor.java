@@ -1,5 +1,7 @@
 package sample.projects.nationalparks.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity

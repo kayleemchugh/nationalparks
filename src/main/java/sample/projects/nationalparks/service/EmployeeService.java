@@ -2,6 +2,7 @@ package sample.projects.nationalparks.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sample.projects.nationalparks.model.Employee;
 import sample.projects.nationalparks.model.Visitor;
 import sample.projects.nationalparks.repository.EmployeeRepository;
@@ -44,8 +45,13 @@ public class EmployeeService
       return employeeRepository.save(employee);
    }
 
-   public Employee deactivateEmployee(Integer employeeId) {
+   @Transactional
+   public Employee setEmployeeIsActive(Integer employeeId, Boolean isActive) {
 
-      return employeeRepository.deactivateEmployee(employeeId);
+      if(employeeRepository.setEmployeeIsActive(employeeId, isActive) != 1){
+         throw new Error("Employee active status did not update");
+      };
+
+      return getEmployeeById(employeeId);
    }
 }
